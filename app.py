@@ -52,4 +52,4 @@ with gr.Blocks() as demo:
 
 # ✅ 运行 Web 应用
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(share=True)
