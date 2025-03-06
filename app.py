@@ -43,13 +43,10 @@ def process_image(image):
 
 # ✅ Chat function for medical Q&A
 def chat_with_model(question):
-    inputs = biomistral_tokenizer(question, return_tensors="pt").to(device)
+    inputs = biomistral_tokenizer(question, return_tensors="pt")
     outputs = biomistral_model.generate(
         **inputs,
-        max_length=100,
-        temperature=0.7,
-        top_p=0.9,
-        do_sample=True
+        max_length=100
     )
     return biomistral_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
