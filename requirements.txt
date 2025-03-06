@@ -1,1 +1,3 @@
-pip install torch transformers gradio
+torch 
+transformers 
+gradio
