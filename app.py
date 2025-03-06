@@ -57,13 +57,13 @@ def chat_with_model(question):
 with gr.Blocks() as demo:
     gr.Markdown("# 🏥 AI-Assisted Medical Image Diagnosis")
     
-    with gr.Tab("Medical Image Analysis"):
-        with gr.Row():
-            image_input = gr.Image(label="Upload medical image (e.g., X-ray)", type="pil")
-            image_output = gr.Label(label="Automatically generated image description")
-        diagnosis_output = gr.Textbox(label="AI-generated medical diagnosis", lines=5)
-        analyze_button = gr.Button("⚡ Perform AI Diagnosis")
-        analyze_button.click(fn=process_image, inputs=image_input, outputs=[image_output, diagnosis_output])
+    # with gr.Tab("Medical Image Analysis"):
+    #     with gr.Row():
+    #         image_input = gr.Image(label="Upload medical image (e.g., X-ray)", type="pil")
+    #         image_output = gr.Label(label="Automatically generated image description")
+    #     diagnosis_output = gr.Textbox(label="AI-generated medical diagnosis", lines=5)
+    #     analyze_button = gr.Button("⚡ Perform AI Diagnosis")
+    #     analyze_button.click(fn=process_image, inputs=image_input, outputs=[image_output, diagnosis_output])
 
     with gr.Tab("Medical Chatbot"):
         chatbot_input = gr.Textbox(label="Ask a medical question", placeholder="What are the symptoms of pneumonia?")
