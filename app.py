@@ -71,6 +71,8 @@ with gr.Blocks() as demo:
         chat_button = gr.Button("💬 Get Answer")
         chat_button.click(fn=chat_with_model, inputs=chatbot_input, outputs=chatbot_output)
 
+print(chat_with_model("What are the symptoms of pneumonia?"))
+
 # ✅ Run the web application
 if __name__ == "__main__":
     demo.launch(share=True)
