@@ -17,7 +17,7 @@ llama_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-chat-h
 # ✅ Load BioMistral medical chatbot model
 biomistral_model_name = "BioMistral/BioMistral-7B"
 biomistral_tokenizer = AutoTokenizer.from_pretrained(biomistral_model_name)
-biomistral_model = AutoModelForCausalLM.from_pretrained(biomistral_model_name).to(device)
+biomistral_model = AutoModelForCausalLM.from_pretrained(biomistral_model_name, torch_dtype=torch.float32, device_map="auto")
 
 # ✅ Generate image description
 def generate_image_description(image):
@@ -64,12 +64,13 @@ with gr.Blocks() as demo:
         diagnosis_output = gr.Textbox(label="AI-generated medical diagnosis", lines=5)
         analyze_button = gr.Button("⚡ Perform AI Diagnosis")
         analyze_button.click(fn=process_image, inputs=image_input, outputs=[image_output, diagnosis_output])
+
     with gr.Tab("Medical Chatbot"):
         chatbot_input = gr.Textbox(label="Ask a medical question", placeholder="What are the symptoms of pneumonia?")
         chatbot_output = gr.Textbox(label="AI Response", lines=5)
         chat_button = gr.Button("💬 Get Answer")
         chat_button.click(fn=chat_with_model, inputs=chatbot_input, outputs=chatbot_output)
-        
+
 # ✅ Run the web application
 if __name__ == "__main__":
     demo.launch(share=True)
