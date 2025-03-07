@@ -22,7 +22,7 @@ biomistral_model = AutoModelForCausalLM.from_pretrained(biomistral_model_name, t
 # ✅ Generate image description
 def generate_image_description(image):
     image = image.convert("RGB")
-    inputs = blip_processor(images=image, return_tensors="pt").to(device)
+    inputs = blip_processor(images=image, return_tensors="pt", padding=True).to(device)
     generated_text = blip_model.generate(**inputs, max_new_tokens=50)
     description = blip_processor.tokenizer.decode(generated_text[0], skip_special_tokens=True)
     return description
